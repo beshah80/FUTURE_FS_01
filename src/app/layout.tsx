@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: `${site.name} — ${site.role}`,
   description: site.tagline,
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"),
   openGraph: {
     title: `${site.name} — ${site.role}`,
     description: site.tagline,

@@ -1,165 +1,151 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Badge } from "@/components/Badge";
-import { ContactForm } from "@/components/ContactForm";
 import { Container } from "@/components/Container";
-import { Header } from "@/components/Header";
+import { PageShell } from "@/components/PageShell";
 import { ProjectCard } from "@/components/ProjectCard";
 import { site } from "@/lib/site";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white text-zinc-950 dark:bg-black dark:text-zinc-50">
-      <Header />
+    <PageShell>
+      <section className="py-16 sm:py-20">
+        <Container>
+          <div className="grid gap-12 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.4fr)] lg:gap-20">
+            <aside className="md:sticky md:top-20 md:self-start space-y-6">
+              {/* Avatar */}
+              <Image
+                src={site.avatar}
+                alt={site.name}
+                width={88}
+                height={88}
+                className="rounded-full ring-2 ring-indigo-500/30"
+                priority
+              />
 
-      <main>
-        <section className="border-b border-zinc-200/70 py-16 dark:border-zinc-800/70 sm:py-20">
-          <Container>
-            <div className="grid items-start gap-10 md:grid-cols-2">
+              {/* Intro */}
               <div>
-                <p className="text-base font-medium text-zinc-600 dark:text-zinc-300">
-                  {site.location}
-                </p>
-                <h1 className="mt-4 text-5xl font-semibold tracking-tight sm:text-6xl">
-                  {site.name}
+                <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+                  Hi, I&apos;m{" "}
+                  <span className="text-indigo-600 dark:text-indigo-400">
+                    {site.name.split(" ")[0]}
+                  </span>
                 </h1>
-                <p className="mt-4 text-xl text-zinc-600 dark:text-zinc-300">
+                <p className="mt-3 text-lg font-medium text-zinc-700 dark:text-zinc-200">
                   {site.role}
                 </p>
-                <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-300">
+                <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-300">
                   {site.tagline}
                 </p>
+              </div>
 
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <a
-                    href="#projects"
-                    className="inline-flex h-12 items-center justify-center rounded-xl bg-zinc-950 px-5 text-base font-semibold text-white dark:bg-white dark:text-black"
-                  >
-                    View projects
-                  </a>
-                  <a
-                    href="#contact"
-                    className="inline-flex h-12 items-center justify-center rounded-xl border border-zinc-200 px-5 text-base font-semibold text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-950"
-                  >
-                    Contact me
-                  </a>
+              {/* CTA buttons */}
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/contact"
+                  className="inline-flex h-10 items-center justify-center rounded-xl bg-indigo-600 px-5 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600"
+                >
+                  Let&apos;s work together
+                </Link>
+                <a
+                  href="/cv.pdf"
+                  download
+                  className="inline-flex h-10 items-center justify-center rounded-xl border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-700 transition-colors hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:border-zinc-700"
+                >
+                  Download CV
+                </a>
+              </div>
+
+              {/* About */}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-zinc-400 dark:text-zinc-500">About</p>
+                <p className="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                  {site.about}
+                </p>
+              </div>
+
+              {/* Quick facts */}
+              <div className="grid gap-2 rounded-2xl border border-zinc-200 bg-white p-4 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200">
+                {site.quickFacts.map((fact) => (
+                  <div key={fact} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500" />
+                    <span>{fact}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Goals */}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-zinc-400 dark:text-zinc-500">Goals</p>
+                <ul className="mt-2 space-y-2">
+                  {site.goals.map((g) => (
+                    <li key={g} className="flex gap-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-400" />
+                      {g}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Education */}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-zinc-400 dark:text-zinc-500">Education</p>
+                <div className="mt-2 space-y-3">
+                  {site.education.map((e) => (
+                    <div key={e.school} className="rounded-xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+                      <p className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">{e.school}</p>
+                      <p className="text-xs text-zinc-600 dark:text-zinc-300">{e.degree}</p>
+                      <p className="text-xs text-zinc-400 dark:text-zinc-500">{e.period}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-7 dark:border-zinc-800 dark:bg-zinc-950 sm:p-8">
-                <h2 className="text-base font-semibold text-zinc-950 dark:text-zinc-50">
-                  Skills & tech stack
+              {/* Languages */}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-zinc-400 dark:text-zinc-500">Languages</p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {site.languages.map((l) => (
+                    <Badge key={l}>{l}</Badge>
+                  ))}
+                </div>
+              </div>
+            </aside>
+
+            <div className="space-y-14">
+              <section aria-label="Featured projects">
+                <div className="flex items-end justify-between gap-4">
+                  <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+                    Featured projects
+                  </h2>
+                  <Link
+                    href="/projects"
+                    className="text-sm font-semibold text-indigo-600 underline decoration-indigo-300 underline-offset-4 hover:decoration-indigo-500 dark:text-indigo-400 dark:decoration-indigo-700 dark:hover:decoration-indigo-500"
+                  >
+                    View all
+                  </Link>
+                </div>
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                  {site.projects.slice(0, 4).map((p) => (
+                    <ProjectCard key={p.title} project={p} />
+                  ))}
+                </div>
+              </section>
+
+              <section aria-label="Skills">
+                <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+                  Skills
                 </h2>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {site.skills.map((s) => (
-                    <Badge key={s}>{s}</Badge>
+                    <Badge key={s} accent>{s}</Badge>
                   ))}
                 </div>
-                <p className="mt-5 text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                  I focus on clean UI, strong fundamentals, and building features
-                  end-to-end (frontend → backend → deployment).
-                </p>
-              </div>
+              </section>
             </div>
-          </Container>
-        </section>
-
-        <section id="projects" className="py-16 sm:py-20">
-          <Container>
-            <div className="flex items-end justify-between gap-6">
-              <div>
-                <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                  Projects
-                </h2>
-                <p className="mt-3 text-base text-zinc-600 dark:text-zinc-300">
-                  A few things I’ve built recently (including Future Interns
-                  tasks).
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {site.projects.map((p) => (
-                <ProjectCard key={p.title} project={p} />
-              ))}
-            </div>
-          </Container>
-        </section>
-
-        <section
-          id="about"
-          className="border-t border-zinc-200/70 py-16 dark:border-zinc-800/70 sm:py-20"
-        >
-          <Container>
-            <div className="grid gap-10 md:grid-cols-2">
-              <div>
-                <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                  About
-                </h2>
-                <p className="mt-5 text-lg leading-8 text-zinc-600 dark:text-zinc-300">
-                  I’m a full-stack developer and an Information Science student
-                  at AAU. I build production-ready web applications with React,
-                  Next.js, and the MERN stack, with a focus on clean UI, strong
-                  fundamentals, and scalable architecture.
-                </p>
-                <p className="mt-5 text-lg leading-8 text-zinc-600 dark:text-zinc-300">
-                  I’ve worked on real projects under tight timelines—shipping a
-                  full course platform in 4 days with API integration, and
-                  contributing to a real-time chat application with reliable
-                  state management and deployment workflows.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-zinc-200 bg-white p-7 dark:border-zinc-800 dark:bg-zinc-950 sm:p-8">
-                <h3 className="text-base font-semibold text-zinc-950 dark:text-zinc-50">
-                  Links
-                </h3>
-                <ul className="mt-5 grid gap-2 text-base">
-                  {site.socials.map((s) => (
-                    <li key={s.href}>
-                      <a
-                        href={s.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="font-medium text-zinc-700 hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-zinc-50"
-                      >
-                        {s.label}
-                      </a>
-                    </li>
-                  ))}
-                  <li>
-                    <a
-                      href={`mailto:${site.email}`}
-                      className="font-medium text-zinc-700 hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-zinc-50"
-                    >
-                      {site.email}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </Container>
-        </section>
-
-        <section id="contact" className="py-16 sm:py-20">
-          <Container>
-            <div className="rounded-2xl border border-zinc-200 bg-white p-7 dark:border-zinc-800 dark:bg-zinc-950 sm:p-10">
-              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                Contact
-              </h2>
-              <p className="mt-3 text-base text-zinc-600 dark:text-zinc-300">
-                Send a message and I’ll get back to you.
-              </p>
-              <ContactForm />
-            </div>
-          </Container>
-        </section>
-      </main>
-
-      <footer className="border-t border-zinc-200/70 py-10 dark:border-zinc-800/70">
-        <Container>
-          <p className="text-sm text-zinc-600 dark:text-zinc-300">
-            © {new Date().getFullYear()} {site.name}. Built with Next.js.
-          </p>
+          </div>
         </Container>
-      </footer>
-    </div>
+      </section>
+    </PageShell>
   );
 }

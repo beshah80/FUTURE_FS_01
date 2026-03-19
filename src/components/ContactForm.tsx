@@ -48,7 +48,7 @@ export function ContactForm() {
             required
             value={form.name}
             onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-            className="h-11 rounded-xl border border-zinc-200 bg-white px-3 text-zinc-950 outline-none focus:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:focus:border-zinc-600"
+            className="h-11 rounded-xl border border-zinc-200 bg-white px-3 text-zinc-950 outline-none focus:border-indigo-400 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:focus:border-indigo-500"
             placeholder="Your name"
             autoComplete="name"
           />
@@ -63,7 +63,7 @@ export function ContactForm() {
             type="email"
             value={form.email}
             onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-            className="h-11 rounded-xl border border-zinc-200 bg-white px-3 text-zinc-950 outline-none focus:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:focus:border-zinc-600"
+            className="h-11 rounded-xl border border-zinc-200 bg-white px-3 text-zinc-950 outline-none focus:border-indigo-400 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:focus:border-indigo-500"
             placeholder="you@example.com"
             autoComplete="email"
           />
@@ -79,7 +79,7 @@ export function ContactForm() {
           rows={5}
           value={form.message}
           onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-          className="resize-y rounded-xl border border-zinc-200 bg-white px-3 py-2 text-zinc-950 outline-none focus:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:focus:border-zinc-600"
+          className="resize-y rounded-xl border border-zinc-200 bg-white px-3 py-2 text-zinc-950 outline-none focus:border-indigo-400 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:focus:border-indigo-500"
           placeholder="What would you like to build together?"
         />
       </label>
@@ -88,7 +88,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={!canSubmit}
-          className="inline-flex h-11 items-center justify-center rounded-xl bg-zinc-950 px-4 text-sm font-semibold text-white transition-opacity disabled:opacity-50 dark:bg-white dark:text-black"
+          className="inline-flex h-11 items-center justify-center rounded-xl bg-indigo-600 px-5 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 disabled:opacity-50 dark:bg-indigo-500 dark:hover:bg-indigo-600"
         >
           {status === "loading" ? "Sending…" : "Send message"}
         </button>
